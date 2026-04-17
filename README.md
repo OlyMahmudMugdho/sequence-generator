@@ -10,7 +10,7 @@ Simple Java app that generates unique IDs (`ORDER`, `USER`, `INVOICE`) from Post
 
 ## Install
 
-Requirements: Java, Maven, Docker (with Compose), `psql` client.
+Requirements: Java, Maven, Docker (with Compose).
 
 ```bash
 docker compose -f docker/docker-compose.yaml up -d
