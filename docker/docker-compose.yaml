@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:alpine
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    entrypoint: >
+      sh -c "
+      echo 'CREATE DATABASE sequence_db;' > /docker-entrypoint-initdb.d/init.sql;
+      exec docker-entrypoint.sh postgres -c shared_buffers=16MB -c work_mem=1MB
+      "
+    networks:
+      - database
+
+networks:
+  database:
+    driver: bridge
+
+volumes:
+  postgres_data:
